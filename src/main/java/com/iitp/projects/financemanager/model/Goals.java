@@ -10,10 +10,10 @@ import java.time.LocalDateTime;
 @Entity
 public class Goals {
     @Id
-    String goal_id;
-    int goal_month;
-    String goal_description;
-    LocalDateTime created_timestamp;
-    LocalDateTime updated_timestamp;
-    String user_id;
+    String goalId;
+    int goalMonth;
+    String goalDescription;
+    LocalDateTime createdTimestamp;
+    LocalDateTime updatedTimestamp;
+    String userId;
 }

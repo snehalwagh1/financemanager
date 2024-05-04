@@ -20,7 +20,7 @@ public class TransactionService {
     }
 
     public List<TransactionDetails> fetchTransactionsByUserId(String userId) {
-        return transactionRepository.findAllByUserId(List.of(userId));
+        return transactionRepository.findByUserId(userId);
     }
 
     public List<TransactionDetails> fetchAllTransactions() {

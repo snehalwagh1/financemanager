@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<TransactionDetails, String> {
-    List<TransactionDetails> findAllByUserId(List<String> userId);
+    List<TransactionDetails> findByUserId(String userId);
 }

@@ -10,14 +10,14 @@ import java.time.LocalDateTime;
 @Entity
 public class UserDetails {
     @Id
-    String user_id;
-    String first_name;
-    String last_name;
+    String userId;
+    String firstName;
+    String lastName;
     String email;
     String password;
-    String account_id;
-    String mobile_number;
+    String accountId;
+    String mobileNumber;
     String address;
-    LocalDateTime create_timestamp;
-    LocalDateTime updated_timestamp;
+    LocalDateTime createTimestamp;
+    LocalDateTime updatedTimestamp;
 }

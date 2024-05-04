@@ -10,11 +10,11 @@ import java.time.LocalDateTime;
 @Entity
 public class TransactionDetails {
     @Id
-    String transaction_id;
-    String user_id;
-    String transaction_category;
-    String account_id;
+    String transactionId;
+    String userId;
+    String transactionCategory;
+    String accountId;
     int amount;
-    LocalDateTime created_timestamp;
-    LocalDateTime updated_timestamp;
+    LocalDateTime createdTimestamp;
+    LocalDateTime updatedTimestamp;
 }

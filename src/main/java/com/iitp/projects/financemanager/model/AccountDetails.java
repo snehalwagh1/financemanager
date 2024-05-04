@@ -10,12 +10,12 @@ import java.time.LocalDateTime;
 @Entity
 public class AccountDetails {
     @Id
-    String account_id;
-    String user_id;
-    String bank_name;
-    String back_ifsc_code;
-    String account_number;
+    String accountId;
+    String userId;
+    String bankName;
+    String backIfscCode;
+    String accountNumber;
     int balance;
-    LocalDateTime created_timestamp;
-    LocalDateTime updated_timestamp;
+    LocalDateTime createdTimestamp;
+    LocalDateTime updatedTimestamp;
 }
