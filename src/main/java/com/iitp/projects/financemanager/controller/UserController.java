@@ -1,6 +1,6 @@
 package com.iitp.projects.financemanager.controller;
 
-import com.iitp.projects.financemanager.model.UserDetails;
+import com.iitp.projects.financemanager.model.UserData;
 import com.iitp.projects.financemanager.service.UserDetailsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -21,20 +21,21 @@ public class UserController {
     }
 
     @GetMapping("/fetchAllUsers")
-    public ResponseEntity<List<UserDetails>> fetchAllUserDetailsList() {
+    public ResponseEntity<List<UserData>> fetchAllUserDetailsList() {
         log.info("fetching all user details service");
         return new ResponseEntity<>(userDetailsService.fetchAllUserDetails(), HttpStatus.OK);
     }
 
     @GetMapping("/fetchUserWithUserId/{userId}")
-    public ResponseEntity<UserDetails> fetchUserWithUserDetails(@PathVariable String userId) throws Exception {
+    public ResponseEntity<UserData> fetchUserWithUserDetails(@PathVariable String userId) throws Exception {
         log.info("fetching all user details service");
         return new ResponseEntity<>(userDetailsService.fetchUserByUserId(userId), HttpStatus.OK);
     }
 
     @PostMapping("/addUser")
-    public ResponseEntity<String> addUser(@RequestBody UserDetails userDetails) {
-        userDetailsService.addUser(userDetails);
+    public ResponseEntity<String> addUser(@RequestBody UserData userData) {
+        log.info("adding user");
+        userDetailsService.addUser(userData);
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 
@@ -45,8 +46,8 @@ public class UserController {
     }
 
     @PostMapping("/updateUser")
-    public ResponseEntity<String> updateUserDetails(@RequestBody UserDetails userDetails) {
-        userDetailsService.updateUserDetails(userDetails);
+    public ResponseEntity<String> updateUserDetails(@RequestBody UserData userData) {
+        userDetailsService.updateUserDetails(userData);
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 }
