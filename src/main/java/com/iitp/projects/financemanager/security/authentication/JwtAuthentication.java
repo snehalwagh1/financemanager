@@ -1,6 +1,6 @@
 package com.iitp.projects.financemanager.security.authentication;
 
-import com.iitp.projects.financemanager.model.UserData;
+import org.springframework.security.core.Authentication;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,17 +9,12 @@ import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
-public class UserAuthentication implements Authentication {
-    UserData userData;
+@AllArgsConstructor
+@NoArgsConstructor
+public class JwtAuthentication implements Authentication {
+    String username;
     String token;
-
-    public UserAuthentication(UserData userData){
-        this.userData= userData;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -27,17 +22,17 @@ public class UserAuthentication implements Authentication {
 
     @Override
     public Object getCredentials() {
-        return userData.getPassword();
+        return token;
     }
 
     @Override
     public Object getDetails() {
-        return userData.getFirstName();
+        return null;
     }
 
     @Override
     public Object getPrincipal() {
-        return userData.getUsername();
+        return username;
     }
 
     @Override
@@ -52,6 +47,6 @@ public class UserAuthentication implements Authentication {
 
     @Override
     public String getName() {
-        return userData.getUsername();
+        return username;
     }
 }

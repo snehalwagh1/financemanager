@@ -39,4 +39,12 @@ public class UserDetailsService {
         }
         throw new Exception("User is not present in DB");
     }
+
+    public UserData fetchUserByUsername(String username) throws Exception {
+        UserData userDetails = userRepository.findByUsername(username);
+        if (userDetails != null) {
+            return userDetails;
+        }
+        throw new Exception("User is not present in DB");
+    }
 }

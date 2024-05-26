@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @Slf4j
+@CrossOrigin(origins = "http://localhost:9007")
 public class UserController {
 
     UserDetailsService userDetailsService;
@@ -30,6 +31,12 @@ public class UserController {
     public ResponseEntity<UserData> fetchUserWithUserDetails(@PathVariable String userId) throws Exception {
         log.info("fetching all user details service");
         return new ResponseEntity<>(userDetailsService.fetchUserByUserId(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/fetchUserWithUsername/{username}")
+    public ResponseEntity<UserData> fetchUserWithUsername(@PathVariable String username) throws Exception {
+        log.info("fetching all user details service");
+        return new ResponseEntity<>(userDetailsService.fetchUserByUsername(username), HttpStatus.OK);
     }
 
     @PostMapping("/addUser")

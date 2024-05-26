@@ -2,6 +2,7 @@ package com.iitp.projects.financemanager.controller;
 
 import com.iitp.projects.financemanager.model.AccountDetails;
 import com.iitp.projects.financemanager.service.AccountDetailsService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/account")
+@CrossOrigin(origins = "http://localhost:9007")
+@Slf4j
 public class AccountController {
 
     AccountDetailsService accountService;
@@ -30,7 +33,12 @@ public class AccountController {
 
     @GetMapping("/fetchAllAccOfUser/{userId}")
     public ResponseEntity<List<AccountDetails>> fetchAllAccOfUser(@PathVariable String userId) {
-        return new ResponseEntity<>(accountService.fetchAllAccOfUser(userId), HttpStatus.OK);
+        log.info("getting account details for user: "+userId);
+        List<AccountDetails> accountDetails= accountService.fetchAllAccOfUser(userId);
+        accountDetails.forEach(acc -> {
+            log.info("acc: "+acc.toString());
+        });
+        return new ResponseEntity<>(accountDetails, HttpStatus.OK);
     }
 
     @PostMapping("/addUserAccount")

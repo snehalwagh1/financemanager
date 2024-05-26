@@ -1,5 +1,6 @@
 package com.iitp.projects.financemanager.security;
 
+import com.iitp.projects.financemanager.security.authprovider.JwtAuthenticationProvider;
 import com.iitp.projects.financemanager.security.authprovider.UserAuthProvider;
 import com.iitp.projects.financemanager.security.filter.UserAuthFilter;
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +19,11 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @Slf4j
 public class ProjectSecurityConfig {
     UserAuthProvider userAuthProvider;
+    JwtAuthenticationProvider jwtAuthenticationProvider;
 
-    public ProjectSecurityConfig(UserAuthProvider userAuthProvider) {
+    public ProjectSecurityConfig(UserAuthProvider userAuthProvider, JwtAuthenticationProvider jwtAuthenticationProvider) {
         this.userAuthProvider = userAuthProvider;
+        this.jwtAuthenticationProvider= jwtAuthenticationProvider;
     }
 
     @Bean
@@ -32,6 +35,7 @@ public class ProjectSecurityConfig {
     public AuthenticationManager authenticationManager(HttpSecurity httpSecurity) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = httpSecurity.getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder.authenticationProvider(userAuthProvider);
+        authenticationManagerBuilder.authenticationProvider(jwtAuthenticationProvider);
         return authenticationManagerBuilder.build();
     }
 

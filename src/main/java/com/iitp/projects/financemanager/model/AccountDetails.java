@@ -13,7 +13,7 @@ public class AccountDetails {
     String accountId;
     String userId;
     String bankName;
-    String backIfscCode;
+    String bankIfscCode;
     String accountNumber;
     int balance;
     LocalDateTime createdTimestamp;
